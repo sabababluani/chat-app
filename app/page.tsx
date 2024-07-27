@@ -1,95 +1,65 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+import { io, Socket } from 'socket.io-client';
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+import Header from './Components/Header/Header';
+import UsernameInput from './Components/UsernameInput/UsernameInput';
+import MessageList from './Components/MessageList/MessageList';
+import MessageInput from './Components/MessageInput/MessageInput';
+import RoomInput from './Components/RoomInput/RoomInput';
+
+interface Message {
+  message: string;
+  sender: string;
+}
 
 export default function Home() {
+  const [socket, setSocket] = useState<Socket | undefined>(undefined);
+  const [inbox, setInbox] = useState<Message[]>([]);
+  const [actualUsername, setActualUsername] = useState('');
+
+  const handleSendMessage = (message: string) => {
+    if (message.length > 0 && actualUsername) {
+      socket?.emit('message', { message, sender: actualUsername });
+    } 
+  };
+
+  const handleJoinRoom = (roomName: string) => {
+    socket?.emit('joinRoom', roomName);
+  };
+
+  const handleSetUsername = (username: string) => {
+    setActualUsername(username);
+  };
+
+  useEffect(() => {
+    const socket = io('http://localhost:3000');
+    setSocket(socket);
+
+    socket.on('message', (message: Message) => {
+      setInbox((inbox) => [...inbox, message]);
+    });
+
+    return () => {
+      socket.off('message');
+      socket.disconnect();
+    };
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div>
+      <Header userName={'Saba Palavandishvili'} pfp={'/girl.png'} />
+      <div className={styles.wrapper}>
+        {!actualUsername ? (
+          <UsernameInput onSetUsername={handleSetUsername} />
+        ) : (
+          <>
+            <MessageList inbox={inbox} actualUsername={actualUsername} />
+            <MessageInput onSendMessage={handleSendMessage} />
+            <RoomInput onJoinRoom={handleJoinRoom} />
+          </>
+        )}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
