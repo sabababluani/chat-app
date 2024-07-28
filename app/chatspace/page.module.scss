@@ -1,0 +1,108 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.input {
+  flex: 1;
+  background-color: black;
+  border-radius: 2px;
+  padding: 2px 1px;
+  height: 50px;
+}
+
+.button {
+  width: 120px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.mapContainer {
+  border-radius: 5px;
+  padding: 4px 2px;
+}
+
+.myMessage {
+  text-align: right;
+  background-color: #d1e7dd;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  color: black;
+}
+
+.theirMessage {
+  text-align: left;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 15px;
+}
+
+.containerWrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  overflow-y: auto; 
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.containerWrapper::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+
+.containerWrapper {
+  scrollbar-width: none; 
+}
+
+
+.containerWrapper {
+  -ms-overflow-style: none;
+}

@@ -4,26 +4,35 @@
   gap: 2px;
   border-radius: 3px;
   padding: 10px;
+  overflow-y: auto;
+  max-height: 500px;  
+  overflow-x: hidden;
 }
+
 .container {
-  width: 100%;
-  max-width: 600px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
 }
+
 .myMessage {
-  text-align: right;
+  align-self: flex-end;
   background-color: #d1e7dd;
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
   color: black;
+  max-width: 80%;
+  word-wrap: break-word;
 }
+
 .theirMessage {
-  text-align: left;
+  align-self: flex-start; 
   background-color: #f8d7da;
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
   color: black;
+  max-width: 80%;
+  word-wrap: break-word;
 }

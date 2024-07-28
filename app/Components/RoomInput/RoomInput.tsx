@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import styles from './RoomInput.module.scss';
+import React, { useState } from "react";
+import styles from "./RoomInput.module.scss";
+import Image from "next/image";
 
 interface RoomInputProps {
   onJoinRoom: (roomName: string) => void;
 }
 
 const RoomInput: React.FC<RoomInputProps> = ({ onJoinRoom }) => {
-  const [roomName, setRoomName] = useState('');
+  const [roomName, setRoomName] = useState("");
 
   const handleJoinRoom = () => {
     onJoinRoom(roomName);
@@ -22,9 +23,7 @@ const RoomInput: React.FC<RoomInputProps> = ({ onJoinRoom }) => {
         onChange={(e) => setRoomName(e.target.value)}
         placeholder="Enter room name"
       />
-      <button className={styles.button} onClick={handleJoinRoom}>
-        Join Room
-      </button>
+      <Image src={"/send.png"} alt="send" width={32} height={32} onClick={handleJoinRoom} />
     </div>
   );
 };
