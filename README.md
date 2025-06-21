@@ -20,8 +20,8 @@ This is a simple real-time chat application built with **Next.js**, **Socket.IO*
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/nextjs-chat-app.git
-cd nextjs-chat-app
+git clone https://github.com/sabababluani/chat-app.git
+cd chat-app
 npm install
 # or
 yarn install
