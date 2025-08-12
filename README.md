@@ -5,10 +5,7 @@ This is a simple real-time chat application built with **Next.js**, **Socket.IO*
 ## Features
 
 - Real-time messaging with Socket.IO
-- Built with Next.js and React
 - Join and leave chat notifications
-- Auto-scroll to latest message
-- Unique username-based identification
 
 ## Tech Stack
 
