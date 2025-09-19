@@ -11,7 +11,7 @@ This is a simple real-time chat application built with **Next.js**, **Socket.IO*
 
 - **Frontend**: Next.js, React, TypeScript
 - **Backend**: Node.js (Next.js API routes), Socket.IO
-- **Styling**: CSS/S
+- **Styling**: CSS
 
 ## Installation
 
