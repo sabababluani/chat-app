@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styles from "./RoomInput.module.scss";
 import Image from "next/image";
 
-interface RoomInputProps {
+interface RoomInputPropsInterface {
   onJoinRoom: (roomName: string) => void;
 }
 
-const RoomInput: React.FC<RoomInputProps> = ({ onJoinRoom }) => {
+const RoomInput = ({ onJoinRoom } : RoomInputPropsInterface) => {
   const [roomName, setRoomName] = useState("");
 
   const handleJoinRoom = () => {
